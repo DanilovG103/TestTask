@@ -1,10 +1,9 @@
-import React from "react"
-import {Global} from './styles'
+import React,{ReactNode} from "react"
 import Head from 'next/head'
 
 interface MainLayoutProps {
     title: string
-    children: any[]
+    children: ReactNode
 }
 
 export function MainLayout({children, title}:MainLayoutProps){
@@ -14,7 +13,6 @@ export function MainLayout({children, title}:MainLayoutProps){
             <title>{title}</title>
             <meta charSet='utf-8'/>
         </Head>
-        <Global/>
         <main>  
             {children}
         </main>

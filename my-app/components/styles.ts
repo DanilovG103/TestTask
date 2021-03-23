@@ -33,105 +33,97 @@ export const Form = styled.form`
     }
 ` 
 
-export const Div = styled.div`
-    &.error {
-        color: red;
-        text-align: center;
-    }
-
-    &.buttons {
-        padding: 1rem;
-    }
+export const Error = styled.div`
+    color: red;
+    text-align: center;
 `
 
-export const P = styled.p`
-    &.layout {
-        font-family: monospace;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 48px;
-        line-height: 32px;
-        text-align: center;
-        color: #c9c9c9;
-        margin-top: 1rem;
-    }
-
-    &.another {
-        font-family: monospace;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
-        line-height: 32px;
-        text-align: center;
-        color: #c9c9c9;
-        margin-top: 0.5rem;
-    }
-
-    &.form {
-        font-family: monospace;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 30px;
-        line-height: 32px;
-        text-align: center;
-        color: #c9c9c9;
-        margin-top: 2.5rem;
-    }
-
-    &.required {
-        color: red;
-        text-align: center;
-    }
-
-`
-export const Input = styled.input`
-    &.index {
-        height: 25px;
-        width: 200px;
-        display: flex;
-        margin: 2rem auto;
-        border-radius: 10px;
-        background: #d9d9d9;
-    }
-
-    &.formInput {
-        margin: 1rem;
-        display: flex;
-        margin: 1rem auto;
-        width: 195px;
-        height: 25px;
-        border-radius: 10px;
-        background: #d9d9d9;
-    }
+export const BTNlist = styled.div`
+    padding: 1rem;
 `
 
-export const Button = styled.button`
-    &.main {
-        margin-top: 1rem;
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 0);
-        padding:10px;
-        border:none;
-        background-color:#00d162;
-        color:#fff;
-        font-weight:600;
-        border-radius:5px;
-    }
+export const Layout = styled.p`
+    font-family: monospace;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 32px;
+    text-align: center;
+    color: #c9c9c9;
+    margin-top: 1rem;
+`
 
-    &.operator {
-        border:none;
-        padding:10px;
-        color:#fff;
-        background-color: #ff7b00;
-        border-radius:5px;
-        margin: 0.5rem auto;
-        display:block;
-        width: 100px;
-    }
+export const Another = styled.p`
+    font-family: monospace;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #c9c9c9;
+    margin-top: 0.5rem;
+`
+
+export const Req = styled.p`
+    color: red;
+    text-align: center;
+`
+
+export const FormP = styled.p`
+    font-family: monospace;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 32px;
+    text-align: center;
+    color: #c9c9c9;
+    margin-top: 2.5rem;
+`
+
+export const InputI = styled.input`
+    height: 25px;
+    width: 200px;
+    display: flex;
+    margin: 2rem auto;
+    border-radius: 10px;
+    background: #d9d9d9;
+`
+
+export const InputF = styled.input`
+    margin: 1rem;
+    display: flex;
+    margin: 1rem auto;
+    width: 195px;
+    height: 25px;
+    border-radius: 10px;
+    background: #d9d9d9;
+`
+
+export const BTNmain = styled.button`
+    margin-top: 1rem;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding:10px;
+    border:none;
+    background-color:#00d162;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
 
     :disabled:hover{
         background: #e5001b !important; 
         -fx-background-color: #e5001b;
-     }
+    }
+`
+
+export const BTNop = styled.button`
+    border:none;
+    padding:10px;
+    color:#fff;
+    background-color: #ff7b00;
+    border-radius:5px;
+    margin: 0.5rem auto;
+    display:block;
+    width: 100px;
 `

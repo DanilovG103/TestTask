@@ -1,21 +1,20 @@
-import React from "react"
-import {P,Div,Input,Button,Form, Global} from '../../components/styles'
-import Head from 'next/head'
-import Link from 'next/link'
+import React,{useState,useEffect} from "react"
+import {Form,Req,FormP,Error,InputF,BTNmain} from '../../components/styles'
 import {useRouter} from "next/router"
-import Router from 'next/router'
+import { MainLayout } from "../../components/MainLayout"
+import InputMask from 'react-input-mask'
 
 export default function Operator(){
     const router = useRouter()
-    const [money,setMoney] = React.useState('')
-    const [moneyFree,setMoneyFree] = React.useState(true)
-    const [moneyError,setMoneyError] = React.useState("Заполните это поле")
-    const [number,setNumber] = React.useState('')
-    const [numberFree,setNumberFree] = React.useState(true)
-    const [numberError,setNumberError] = React.useState("Заполните это поле")
-    const [formValid,setFormValid] = React.useState(false)
+    const [money,setMoney] = useState('')
+    const [moneyFree,setMoneyFree] = useState(true)
+    const [moneyError,setMoneyError] = useState("Заполните это поле")
+    const [number,setNumber] = useState('')
+    const [numberFree,setNumberFree] = useState(true)
+    const [numberError,setNumberError] = useState("Заполните это поле")
+    const [formValid,setFormValid] = useState(false)
 
-    React.useEffect(() =>{
+    useEffect(() =>{
         (moneyError || numberError) ? setFormValid(false) : setFormValid(true);
     },[moneyError,numberError])
 
@@ -23,7 +22,7 @@ export default function Operator(){
         setMoney(e.target.value)
         const moneyTest_RE = /^\$?\d+((,\d{3})+)?(\.\d+)?$/;
         !moneyTest_RE.test(e.target.value) ? setMoneyError("Введена некорректная сумма") : setMoneyError(" ");
-        !(+e.target.value > 0 && +e.target.value <=1000 || e.target.value == '') ? setMoneyError('Введена некорректная сумма') : setMoneyError("")
+        !(+e.target.value > 0 && +e.target.value <=1000 || e.target.value == ' ') ? setMoneyError('Введена некорректная сумма') : setMoneyError("")
     }
 
     const numberHandler = (e) => {
@@ -42,56 +41,45 @@ export default function Operator(){
                 break
         }
     }
-    
+
     const randomSumbit = (e) => {
         e.preventDefault()
-
         if (Math.random()> 0.50) {
             alert('Успешно!')
-            Router.push('/')
+            router.push('/')
         }else{
             alert('Попробуйте ещё раз')
         }
     }
 
     return (
-        <>
-        <Head>
-            <title>Страница оплаты</title>
-            <meta charSet='utf-8'/>
-        </Head>
-        <Global/>
-        <Form>
-        <Link href='/'><button style={{background:"#fff"}}>Вернуться на главную страницу</button></Link>
-        <P className="form">Выбран оператор: {router.query.operator} </P>
-            <P className="form">Введите необходимую сумму и номер телефона:</P>
-            <Input className = "formInput" 
-                id="inputLabel"
-                name = 'money' 
+        <MainLayout title="Страница оплаты">
+        <button style={{background:"#fff"}} onClick = {() => router.push("/")}>Вернуться на главную страницу</button>
+        <Form onSubmit={(e) => randomSumbit(e)}>
+        <FormP>Выбран оператор: {router.query.operator} </FormP>
+            <FormP>Введите необходимую сумму и номер телефона:</FormP>
+            <InputF name = 'money' 
                 type="text" 
                 value = {money} 
-                onChange = {e => moneyHandler(e)} 
-                onBlur = {e => blurHandler(e)}
+                onChange = {moneyHandler} 
+                onBlur = {blurHandler}
                 maxLength={4} 
                 placeholder='*Введите сумму от 1 до 1000 рублей' />
-            {(moneyFree && moneyError) && <Div className="error">{moneyError}</Div>}
-            <Input className = "formInput"
-                id="inputLabel1"
-                name = "phoneNumber"
+            {(moneyFree && moneyError) && <Error>{moneyError}</Error>}
+            <InputMask name = "phoneNumber"
+                mask = "+7 (***) *** ** **"
                 value = {number}
-                type = "text"
-                placeholder = "*+7 **** *** ** **"
-                maxLength={12}
-                onChange = {e => numberHandler(e)}
-                onBlur = {e => blurHandler(e)}/>
-            {(numberFree && numberError) && <Div className="error">{numberError}</Div>}
-            <Button className = "main" 
-                disabled = {!formValid}
-                onClick = {(e) => randomSumbit(e)}>
+                onChange = {numberHandler}
+                onBlur = {blurHandler}>
+            {() => <InputF type="text" placeholder={"+7 (___) ___-__-__"} />}
+            </InputMask>
+            {(numberFree && numberError) && <Error>{numberError}</Error>}
+            <BTNmain
+                disabled = {!formValid}>
                 Подтвердить оплату
-            </Button>
-            <P className="required">*Обязательные поля</P>
+            </BTNmain>
+            <Req>*Обязательные поля</Req>
         </Form>
-        </>
+        </MainLayout>
     )
 }

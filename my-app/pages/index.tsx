@@ -1,15 +1,15 @@
-import {Div, P, Button, Input} from '../components/styles'
+import {Layout,Another,BTNlist,Error,InputI,BTNmain,BTNop} from '../components/styles'
 import { MainLayout } from '../components/MainLayout'
 import Router from 'next/router'
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 
 export default function Index(){
-    const [inputValue,setInputValue] = React.useState("")
-    const [operatorFree,setOperatorFree] = React.useState(true)
-    const [operatorError,setOperatorError] = React.useState(" ")
-    const [buttonValid,setButtonValid] = React.useState(false)
+    const [inputValue,setInputValue] = useState("")
+    const [operatorFree,setOperatorFree] = useState(true)
+    const [operatorError,setOperatorError] = useState(" ")
+    const [buttonValid,setButtonValid] = useState(false)
 
-    React.useEffect(()=>{
+    useEffect(()=>{
         operatorError ? setButtonValid(false) : setButtonValid(true);
     },[operatorError])
 
@@ -33,22 +33,21 @@ export default function Index(){
     
     return (
     <MainLayout title='Home Page'>
-        <P className='layout'>Выберите оператора:</P>
-        <Div className="buttons">
-            <Button className="operator" onClick = {() => toFormPage("МТС")}>МТС</Button>
-            <Button className="operator" onClick = {() => toFormPage("Мегафон")}>Мегафон</Button>
-            <Button className="operator" onClick = {() => toFormPage("Билайн")}>Билайн</Button>
-        </Div>
-        <P className='another'>Или введите название другого оператора:</P>
-        <Input className = "index"
-                value = {inputValue}
+        <Layout>Выберите оператора:</Layout>
+        <BTNlist>
+            <BTNop onClick = {() => toFormPage("МТС")}>МТС</BTNop>
+            <BTNop onClick = {() => toFormPage("Мегафон")}>Мегафон</BTNop>
+            <BTNop onClick = {() => toFormPage("Билайн")}>Билайн</BTNop>
+        </BTNlist>
+        <Another>Или введите название другого оператора:</Another>
+        <InputI value = {inputValue}
                 onChange = {(e) => operatorHandler(e)}
                 onBlur = {(e) => blurHandler(e)}
                 name = "operator_name"
                 type="text" 
                 placeholder = "Название оператора"/>
-            {(operatorFree && operatorError) && <Div className="error">{operatorError}</Div>}
-        <Button className="main" onClick = {() => toFormPage(inputValue)} disabled={!buttonValid}>Перейти на страницу оплаты</Button>
+            {(operatorFree && operatorError) && <Error>{operatorError}</Error>}
+        <BTNmain onClick = {() => toFormPage(inputValue)} disabled={!buttonValid}>Перейти на страницу оплаты</BTNmain>
     </MainLayout>
   )
 }
