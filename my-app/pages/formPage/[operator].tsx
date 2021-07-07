@@ -54,7 +54,7 @@ export default function Operator(){
 
     return (
         <MainLayout title="Страница оплаты">
-        <button style={{background:"#fff"}} onClick = {() => router.push("/")}>Вернуться на главную страницу</button>
+        <button id="btn4" style={{background:"#fff"}} onClick = {() => router.push("/")}>Вернуться на главную страницу</button>
         <Form onSubmit={(e) => randomSumbit(e)}>
         <FormP>Выбран оператор: {router.query.operator} </FormP>
             <FormP>Введите необходимую сумму и номер телефона:</FormP>
@@ -64,17 +64,19 @@ export default function Operator(){
                 onChange = {moneyHandler} 
                 onBlur = {blurHandler}
                 maxLength={4} 
-                placeholder='*Введите сумму от 1 до 1000 рублей' />
+                placeholder='*Введите сумму от 1 до 1000 рублей' 
+                id="money"/>
             {(moneyFree && moneyError) && <Error>{moneyError}</Error>}
             <InputMask name = "phoneNumber"
                 mask = "+7 (***) *** ** **"
                 value = {number}
                 onChange = {numberHandler}
                 onBlur = {blurHandler}>
-            {() => <InputF type="text" placeholder={"+7 (___) ___-__-__"} />}
+            {() => <InputF id="phone" type="text" placeholder={"+7 (___) ___-__-__"} />}
             </InputMask>
             {(numberFree && numberError) && <Error>{numberError}</Error>}
             <BTNmain
+                id="pay"
                 disabled = {!formValid}>
                 Подтвердить оплату
             </BTNmain>
