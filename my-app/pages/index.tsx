@@ -35,9 +35,9 @@ export default function Index(){
     <MainLayout title='Home Page'>
         <Layout>Выберите оператора:</Layout>
         <BTNlist>
-            <BTNop onClick = {() => toFormPage("МТС")}>МТС</BTNop>
-            <BTNop onClick = {() => toFormPage("Мегафон")}>Мегафон</BTNop>
-            <BTNop onClick = {() => toFormPage("Билайн")}>Билайн</BTNop>
+            <BTNop id="btn1" onClick = {() => toFormPage("МТС")}>МТС</BTNop>
+            <BTNop id="btn2" onClick = {() => toFormPage("Мегафон")}>Мегафон</BTNop>
+            <BTNop id="btn3" onClick = {() => toFormPage("Билайн")}>Билайн</BTNop>
         </BTNlist>
         <Another>Или введите название другого оператора:</Another>
         <InputI value = {inputValue}
@@ -45,9 +45,10 @@ export default function Index(){
                 onBlur = {(e) => blurHandler(e)}
                 name = "operator_name"
                 type="text" 
-                placeholder = "Название оператора"/>
+                placeholder = "Название оператора"
+                id="opInput"/>
             {(operatorFree && operatorError) && <Error>{operatorError}</Error>}
-        <BTNmain onClick = {() => toFormPage(inputValue)} disabled={!buttonValid}>Перейти на страницу оплаты</BTNmain>
+        <BTNmain id="to-form-btn" onClick = {() => toFormPage(inputValue)} disabled={!buttonValid}>Перейти на страницу оплаты</BTNmain>
     </MainLayout>
   )
 }
